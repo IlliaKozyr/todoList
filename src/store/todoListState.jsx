@@ -16,16 +16,11 @@ class TodoList {
         this.activeTask = todo;
     }
 
-
     completeTodo(id) {
         this.todos = this.todos.map((todo) =>
             todo.id === id ? { ...todo, completed: !todo.completed } : todo
         );
     }
-
-    // removeTodo(id) {
-    //     this.todos = this.todos.filter((todo) => todo.id !== id);
-    // }
 }
 
 export default new TodoList();

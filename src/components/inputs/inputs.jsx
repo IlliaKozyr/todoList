@@ -20,22 +20,24 @@ export const Inputs = observer(() => {
         <>
             <div className="inputsBlock">
                 <div className="inputBlock">
-                    <label for="title" className="label">
+                    <label className="label">
                         title
                     </label>
                     <input
                         type="text"
+                        value={valueTitle}
                         id="title"
                         onChange={(event) => setValueTitle(event.target.value)}
                     />
                 </div>
 
                 <div className="inputBlock">
-                    <label for="description" className="label">
+                    <label className="label">
                         description
                     </label>
                     <input
                         type="text"
+                        value={valueDescription}
                         id="description"
                         onChange={(event) =>
                             setValueDescription(event.target.value)
@@ -45,7 +47,7 @@ export const Inputs = observer(() => {
             </div>
             <button
                 className="button"
-                onClick={() => todoListState.addTodo(createArray)}
+                onClick={() => (todoListState.addTodo(createArray), setValueTitle(""), setValueDescription(""))}
                 disabled={
                     valueTitle.length === 0 || valueDescription.length === 0
                 }

@@ -32,7 +32,6 @@ export const CreateList = observer(() => {
                         checked={todo.completed}
                         onChange={() => todoListState.completeTodo(todo.id)}
                     />
-                    {/* <button className="btnRemove" onClick={() => todoListState.removeTodo(id)}>X</button> */}
                 </div>
             ))}
         </div>
