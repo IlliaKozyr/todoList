@@ -1,0 +1,19 @@
+.inputsBlock {
+    display: flex;
+    padding-top: 20px;
+}
+
+.inputBlock {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 4px 20px;
+}
+
+.label {
+    margin-bottom: 10px;
+}

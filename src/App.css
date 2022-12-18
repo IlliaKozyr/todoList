@@ -1,0 +1,24 @@
+body {
+  background-color: #d9d9d9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.fullDescriptionBlock {
+  background-color: #a1a1a1;
+  padding: 80px 40px 80px 40px;
+  min-width: 500px;
+}
+
+.listBlock {
+  padding: 20px;
+  min-width: 500px;
+}
+
+
+

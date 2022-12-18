@@ -1,0 +1,38 @@
+.modalWindowsBlock {
+    background-color: #d9d9d9;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.todoTitle {
+    text-align: center;
+    margin: 0;
+}
+
+.gray {
+    color: #a1a1a1;
+    margin-right: 5px;
+}
+
+.df {
+    display: flex;
+}
+
+.btnClose {
+    background-color: #907675;
+    align-items: flex-end;
+}
+
+.btnBlock {
+    display: flex;
+    justify-content: end;
+}
+
+.descriptionBlock {
+    flex-direction: column;
+}
+
+.setting {
+    margin: 5px 0;
+}
