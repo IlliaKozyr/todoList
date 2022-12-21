@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import todoListState from "../../store/todoListState";
 
 export const CreateList = observer(() => {
-    const { todos } = todoListState;
+    const { todos, index } = todoListState;
 
     return (
         <div className="todoListBlock">

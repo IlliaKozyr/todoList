@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite";
 import { CreateList } from "./components/todoList/list.jsx";
 import { ModalWindow } from "./components/modalWindow/modal";
 import todoListState from "./store/todoListState";
+import SortingTodo from "./components/sorting/sorting";
 
 const TodoListApp = observer(() => {
     const { activeTask } = todoListState;
@@ -12,7 +13,14 @@ const TodoListApp = observer(() => {
         <div className="container">
             <div className="listBlock">
                 <Inputs />
-                <ColumnNames />
+                <div className="sortSearchBlock">
+                    <div className="df">
+                    
+                        <SortingTodo />
+                    </div>
+                    <ColumnNames />
+                </div>
+                
                 <CreateList />
             </div>
             <div className="fullDescriptionBlock">

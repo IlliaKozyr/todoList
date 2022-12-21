@@ -20,5 +20,15 @@ body {
   min-width: 500px;
 }
 
+.sortSearchBlock{
+  display: flex;
+  margin-top: 100px;
+  flex-direction: column;
+}
+
+.df {
+  justify-content: space-between;
+}
+
 
 
