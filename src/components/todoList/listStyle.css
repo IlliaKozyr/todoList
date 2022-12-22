@@ -15,6 +15,10 @@
     margin-top: 15px;
 }
 
+ul {
+    padding: 0;
+}
+
 .inputBtnBlock {
     display: flex;
     padding: 14px 0;

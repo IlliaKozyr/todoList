@@ -27,6 +27,7 @@ body {
 }
 
 .df {
+  display: flex;
   justify-content: space-between;
 }
 

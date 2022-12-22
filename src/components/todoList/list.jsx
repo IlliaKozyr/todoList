@@ -4,15 +4,15 @@ import { observer } from "mobx-react-lite";
 import todoListState from "../../store/todoListState";
 
 export const CreateList = observer(() => {
-    const { todos, index } = todoListState;
+    const { todos, setTodo } = todoListState;
 
     return (
-        <div className="todoListBlock">
+        <ul className="todoListBlock">
             {todos.map((todo) => (
-                <div
+                <li
                     className="todo"
                     key={todo.id}
-                    onClick={() => todoListState.setTodo(todo)}
+                    onClick={() => (todoListState.setTodo(todo))}
                 >
                     <p className="id">#{todo.id}</p>
                     <p className="title">
@@ -32,13 +32,13 @@ export const CreateList = observer(() => {
                             onChange={() => todoListState.completeTodo(todo.id)}
                         />
                         <button
-                            onClick={() => todoListState.removeTodo(todo.id)}
+                            onClick={() => (todoListState.removeTodo(todo.id))}
                         >
                             x
                         </button>
                     </div>
-                </div>
+                </li>
             ))}
-        </div>
+        </ul>
     );
 });

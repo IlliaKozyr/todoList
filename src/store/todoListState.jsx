@@ -25,7 +25,6 @@ class TodoList {
             todo.id === id ? { ...todo, completed: !todo.completed } : todo
         );
     }
-
 }
 
 export default new TodoList();

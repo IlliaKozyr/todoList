@@ -53,14 +53,14 @@ const SortingTodo = () => {
 
     return (
         <div>
-            <select id="selectHTML">
-                <option value="no" selected>
-                    Sorting
+            <select id="selectHTML" defaultValue={"no"}>
+                <option value="no">
+                    Select
                 </option>
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
-                <option value="19">#id 1-9</option>
-                <option value="91">#id 9-1</option>
+                <option value="19">1-9</option>
+                <option value="91">9-1</option>
             </select>
             <button onClick={() => sorting(todos, select.value)}>
                 Sorting
