@@ -12,29 +12,28 @@ const TodoListApp = observer(() => {
 
     const { activeTask, todos } = todoListState;
 
-
     // const [arr] = React.useState(todos);
-    // const [filtered, setFiltered] = React.useState([]);
+    const [filtered, setFiltered] = React.useState([]);
 
-    // React.useEffect(() => {
-    //     setFiltered(arr);
-    // }, [arr]);
+    React.useEffect(() => {
+        setFiltered(todos);
+    }, [todos]);
 
-    // const search = (val) => {
-    //     let todos = [],
-    //         newList = [];
-    //     if (val !== "") {
-    //         todos = arr;
-    //         newList = todos.filter((todo) => {
-    //             const lc = todo.title.toLowerCase();
-    //             const filter = val.toLowerCase();
-    //             return lc.includes(filter);
-    //         });
-    //     } else {
-    //         newList = arr;
-    //     }
-    //     setFiltered(newList);
-    // };
+    const search = (val) => {
+        let currentTodos = [],
+            newList = [];
+        if (val !== "") {
+            currentTodos = todos
+            newList = currentTodos.filter((todo) => {
+                const lc = todo.title.toLowerCase();
+                const filter = val.toLowerCase();
+                return lc.includes(filter);
+            });
+        } else {
+            newList = todos;
+        }
+        setFiltered(newList);
+    };
 
     return (
         <div className="container">
@@ -42,14 +41,14 @@ const TodoListApp = observer(() => {
                 <Inputs />
                 <div className="sortSearchBlock">
                     <div className="df">
-                        <InputSearch />
+                        <InputSearch {...{ search }}/>
                         {/* {...{ search }} */}
                         <SortingTodo />
                     </div>
                     <ColumnNames />
                 </div>
 
-                <CreateList />
+                <CreateList todos={filtered}/>
                 {/* arr={filtered} */}
             </div>
             <div className="fullDescriptionBlock">

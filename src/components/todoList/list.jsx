@@ -3,12 +3,12 @@ import "./listStyle.css";
 import { observer } from "mobx-react-lite";
 import todoListState from "../../store/todoListState";
 
-export const CreateList = observer(() => {
+export const CreateList = observer((props) => {
     const { todos, setTodo } = todoListState;
 
     return (
         <ul className="todoListBlock">
-            {todos.map((todo) => (
+            {props.todos.map((todo) => (
                 <li
                     className="todo"
                     key={todo.id}
