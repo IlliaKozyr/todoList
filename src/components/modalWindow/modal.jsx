@@ -23,8 +23,6 @@ export const ModalWindow = observer((activeTask) => {
         }
     };
 
-    console.log(activeTask.activeTask)
-
     const modalRemove = () => {
         if(todos.length === 0) {
             todoListState.activeTask = null;

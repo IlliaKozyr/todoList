@@ -1,11 +1,13 @@
 import "./sortingStyle.css";
 import todoListState from "../../store/todoListState";
+import saveTodo from "../../helpers/localStorage";
 
 const SortingTodo = () => {
     const { todos } = todoListState;
     const select = document.getElementById("selectHTML");
 
     const sorting = (arr, selectText) => {
+        console.log(arr, 'this arr');
         return selectText === "az"
             ? arr.sort(function (a, b) {
                   if (a.title > b.title) {
@@ -48,7 +50,7 @@ const SortingTodo = () => {
                   }
 
                   return 0;
-              });
+              }) 
     };
 
     return (
@@ -62,7 +64,7 @@ const SortingTodo = () => {
                 <option value="19">1-9</option>
                 <option value="91">9-1</option>
             </select>
-            <button onClick={() => sorting(todos, select.value)}>
+            <button onClick={() => (sorting(todos, select.value), saveTodo())}>
                 Sorting
             </button>
         </div>

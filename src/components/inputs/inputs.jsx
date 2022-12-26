@@ -2,6 +2,7 @@ import "./inputsStyle.css";
 import todoListState from "../../store/todoListState";
 import React from "react";
 import { observer } from "mobx-react-lite";
+import saveTodo from "../../helpers/localStorage";
 
 export const Inputs = observer(() => {
     const [valueTitle, setValueTitle] = React.useState("");
@@ -47,7 +48,7 @@ export const Inputs = observer(() => {
             </div>
             <button
                 className="button"
-                onClick={() => (todoListState.addTodo(createArray), setValueTitle(""), setValueDescription(""))}
+                onClick={() => (todoListState.addTodo(createArray), setValueTitle(""), setValueDescription(""), saveTodo())}
                 disabled={
                     valueTitle.length === 0 || valueDescription.length === 0
                 }

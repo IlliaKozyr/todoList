@@ -2,6 +2,7 @@ import React from "react";
 import "./listStyle.css";
 import { observer } from "mobx-react-lite";
 import todoListState from "../../store/todoListState";
+import saveTodo from "../../helpers/localStorage";
 
 export const CreateList = observer((props) => {
     const { todos, setTodo } = todoListState;
@@ -12,7 +13,7 @@ export const CreateList = observer((props) => {
                 <li
                     className="todo"
                     key={todo.id}
-                    onClick={() => (todoListState.setTodo(todo))}
+                    onClick={() => todoListState.setTodo(todo)}
                 >
                     <p className="id">#{todo.id}</p>
                     <p className="title">
@@ -32,7 +33,9 @@ export const CreateList = observer((props) => {
                             onChange={() => todoListState.completeTodo(todo.id)}
                         />
                         <button
-                            onClick={() => (todoListState.removeTodo(todo.id))}
+                            onClick={() => (
+                                todoListState.removeTodo(todo.id), saveTodo()
+                            )}
                         >
                             x
                         </button>

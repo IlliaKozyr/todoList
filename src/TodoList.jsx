@@ -7,18 +7,18 @@ import { ModalWindow } from "./components/modalWindow/modal";
 import todoListState from "./store/todoListState";
 import SortingTodo from "./components/sorting/sorting";
 import InputSearch from "./components/search/inputSearch";
+import saveTodo from "./helpers/localStorage";
 
 const TodoListApp = observer(() => {
 
     const { activeTask, todos } = todoListState;
 
-    // const [arr] = React.useState(todos);
     const [filtered, setFiltered] = React.useState([]);
 
     React.useEffect(() => {
         setFiltered(todos);
     }, [todos]);
-
+ 
     const search = (val) => {
         let currentTodos = [],
             newList = [];
@@ -42,14 +42,11 @@ const TodoListApp = observer(() => {
                 <div className="sortSearchBlock">
                     <div className="df">
                         <InputSearch {...{ search }}/>
-                        {/* {...{ search }} */}
                         <SortingTodo />
                     </div>
                     <ColumnNames />
                 </div>
-
                 <CreateList todos={filtered}/>
-                {/* arr={filtered} */}
             </div>
             <div className="fullDescriptionBlock">
                 {activeTask && <ModalWindow activeTask={activeTask} />}
@@ -57,5 +54,7 @@ const TodoListApp = observer(() => {
         </div>
     );
 });
+
+
 
 export default TodoListApp;

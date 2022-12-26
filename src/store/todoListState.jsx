@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 class TodoList {
-    todos = [];
+    todos = JSON.parse(localStorage.getItem("todos"));
     activeTask = null;
 
     constructor() {

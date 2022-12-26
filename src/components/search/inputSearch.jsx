@@ -2,7 +2,6 @@ import React from "react";
 import todoListState from "../../store/todoListState";
 
 const InputSearch = (props) => {
-    // const [value, setValue] = React.useState("");
 
     return (
         <div className="dflex">
@@ -11,7 +10,6 @@ const InputSearch = (props) => {
                 type="text"
                 placeholder="Search here..."
             ></input>
-            {/* <button onClick={() => todoListState.searchTodo(value)}>Search</button> */}
         </div>
     );
 };
