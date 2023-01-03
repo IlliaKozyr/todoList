@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 class TodoStore {
+    
     todos = {};
 
     activeTodo = null;
@@ -9,30 +10,20 @@ class TodoStore {
         makeAutoObservable(this);
     }
 
-    addTodo(array) {
-        this.todos[Object.keys(this.todos).length - 1 === -1 ? 0 : Object.values(this.todos)[Object.keys(this.todos).length - 1].id] = array;
+    addTodo(todo) {
+        this.todos[todo.id] = todo
     }
 
-    setTodo(todo) {
-        this.activeTodo = todo;
+    setActiveTodo(id) {
+        this.activeTodo = id ? this.todos[id] : null;
     }
 
     removeTodo(id) {
-        delete this.todos[id];
-        if (Object.keys(this.todos).length === 0) {
-            this.todos = {}
-        } 
+        delete this.todos[id]; 
     }
 
-    completeTodo(index) {
-        if(this.todos[index]?.completed) {
-            this.todos[index].completed = !this.todos[index].completed
-            // console.log("if", this.todos[index].completed)
-        } else { 
-            this.todos[index].completed = !this.todos[index].completed
-            // console.log('else', this.todos[index].completed)
-        }
-        
+    completeTodo(index, value) {
+        this.todos[index].completed = value
     }
 }
 

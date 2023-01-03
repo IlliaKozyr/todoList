@@ -3,38 +3,10 @@ import './style.css'
 import { observer } from "mobx-react-lite";
 import { store } from "../../store";
 
-export const ModalWindow = observer((activeTodo, array) => {
+export const ModalWindow = observer(() => {
 
-    const { title, description, id, completed } = activeTodo.activeTodo;
-    const { todos } = store;
-    const [complete, setComplete] = React.useState(false);
-
-    React.useEffect(() => {
-        completeFunc();
-    }, [activeTodo.activeTodo.completed]);
-
-
-    const completeFunc = () => {
-        if (todos[id - 1]?.completed) {
-            setComplete(true);
-        } else {
-            setComplete(false);
-        }
-    };
-
-    const modalRemove = () => {
-        if(Object.keys(todos).length === 0) {
-            store.setTodo(null)
-            document.getElementById("modalWindowsBlock").style.display = "none"
-        } else {
-            document.getElementById("modalWindowsBlock").style.display = "block"
-        }
-    }
-
-    React.useEffect(() => {
-        modalRemove()
-    }, [store.activeTodo])
-
+    const { todos, activeTodo } = store;
+    const { title, description, id } = activeTodo;
 
     return (
         <div className="modalWindowsBlock" id="modalWindowsBlock">
@@ -45,12 +17,12 @@ export const ModalWindow = observer((activeTodo, array) => {
             </div>
             <div className="dflex">
                 <p className="gray">status:</p>
-                <p>{complete ? "done" : "not ready"}</p>
+                <p>{todos[id]?.completed ? "done" : "not ready"}</p>
             </div>
             <div className="btnBlock">
                 <button
                     className="btnClose"
-                    onClick={() => (store.setTodo(null))}
+                    onClick={() => (store.setActiveTodo(null))}
                 >
                     Close
                 </button>

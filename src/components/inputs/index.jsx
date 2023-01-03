@@ -1,23 +1,12 @@
 import "./style.css";
-import {store} from "../../store";
+import { store } from "../../store";
 import React from "react";
 import { observer } from "mobx-react-lite";
+import uuid from "react-uuid";
 
 export const Inputs = observer(() => {
     const [valueTitle, setValueTitle] = React.useState("");
     const [valueDescription, setValueDescription] = React.useState("");
-    const [arrayIndex, setArrayIndex] = React.useState(0)
-
-    const {todos} = store
-
-    function CreateArray(title, description) {
-            this.id = arrayIndex + 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
-            this.title = title;
-            this.description = description;
-            this.completed = false;  
-    }
-
-    const createArray = new CreateArray(valueTitle, valueDescription);
 
     return (
         <>
@@ -46,12 +35,16 @@ export const Inputs = observer(() => {
             </div>
             <button
                 className="button"
-                onClick={() => (
-                    store.addTodo(createArray),
-                    setValueTitle(""),
-                    setValueDescription(""),
-                    setArrayIndex(arrayIndex + 1)
-                )}
+                onClick={() => {
+                    store.addTodo({
+                        id: uuid(),
+                        title: valueTitle,
+                        description: valueDescription,
+                        completed: false,
+                    });
+                    setValueTitle("");
+                    setValueDescription("");
+                }}
                 disabled={
                     valueTitle.length === 0 || valueDescription.length === 0
                 }

@@ -47,7 +47,7 @@ export const TodoListApp = observer(() => {
                 {/* todos={filtered} */}
             </div>
             <div className="fullDescriptionBlock">
-                {activeTodo && <ModalWindow activeTodo={activeTodo} array={todos}/>}
+                {activeTodo && <ModalWindow activeTodo={activeTodo} />}
             </div>
         </div>
     );
