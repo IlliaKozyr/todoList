@@ -3,10 +3,8 @@ import "./style.css";
 import { observer } from "mobx-react-lite";
 import { store } from "../../store";
 import uuid from "react-uuid";
-import { InputSearch } from "../search";
 
 export const TodoList = observer((newTodos) => {
-
 
     return (
         <ul className="todoListBlock">

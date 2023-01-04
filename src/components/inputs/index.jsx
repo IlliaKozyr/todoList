@@ -42,6 +42,7 @@ export const Inputs = observer(() => {
                         title: valueTitle,
                         description: valueDescription,
                         completed: false,
+                        date: Date.now(),
                     });
                     setValueTitle("");
                     setValueDescription("");
