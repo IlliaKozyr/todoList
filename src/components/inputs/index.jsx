@@ -7,6 +7,7 @@ import uuid from "react-uuid";
 export const Inputs = observer(() => {
     const [valueTitle, setValueTitle] = React.useState("");
     const [valueDescription, setValueDescription] = React.useState("");
+    const [id, setId] = React.useState(1 + uuid())
 
     return (
         <>
@@ -37,13 +38,14 @@ export const Inputs = observer(() => {
                 className="button"
                 onClick={() => {
                     store.addTodo({
-                        id: uuid(),
+                        id: id,
                         title: valueTitle,
                         description: valueDescription,
                         completed: false,
                     });
                     setValueTitle("");
                     setValueDescription("");
+                    setId(String(Number(id[0]) + 1) + String(uuid()));
                 }}
                 disabled={
                     valueTitle.length === 0 || valueDescription.length === 0

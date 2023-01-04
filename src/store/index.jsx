@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 class TodoStore {
-    
+
     todos = {};
 
     activeTodo = null;
@@ -25,6 +25,7 @@ class TodoStore {
     completeTodo(index, value) {
         this.todos[index].completed = value
     }
+
 }
 
 export const store = new TodoStore();

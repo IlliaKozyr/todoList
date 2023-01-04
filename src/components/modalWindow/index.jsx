@@ -3,10 +3,12 @@ import './style.css'
 import { observer } from "mobx-react-lite";
 import { store } from "../../store";
 
-export const ModalWindow = observer(() => {
+export const ModalWindow = observer((newTodos) => {
 
     const { todos, activeTodo } = store;
     const { title, description, id } = activeTodo;
+
+    console.log(activeTodo, title, id)
 
     return (
         <div className="modalWindowsBlock" id="modalWindowsBlock">

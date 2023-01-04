@@ -1,74 +1,33 @@
-import './style.css'
-import todoListState from "../../store";
-import saveTodo from "../../helpers/localStorage";
+import "./style.css";
+import { store } from "../../store";
 
-const SortingTodo = () => {
-    const { todos } = todoListState;
+export const SortingTodo = (newTodos) => {
+
+    const { todos } = store;
     const select = document.getElementById("selectHTML");
 
-    const sorting = (arr, selectText) => {
-        console.log(arr, 'this arr');
-        return selectText === "az"
-            ? arr.sort(function (a, b) {
-                  if (a.title > b.title) {
-                      return 1;
-                  }
-                  if (a.title < b.title) {
-                      return -1;
-                  }
-
-                  return 0;
-              })
-            : selectText === "za"
-            ? arr.sort(function (a, b) {
-                  if (a.title < b.title) {
-                      return 1;
-                  }
-                  if (a.title > b.title) {
-                      return -1;
-                  }
-
-                  return 0;
-              })
-            : selectText === "19"
-            ? arr.sort(function (a, b) {
-                  if (a.id > b.id) {
-                      return 1;
-                  }
-                  if (a.id < b.id) {
-                      return -1;
-                  }
-
-                  return 0;
-              })
-            : arr.sort(function (a, b) {
-                  if (a.id < b.id) {
-                      return 1;
-                  }
-                  if (a.id > b.id) {
-                      return -1;
-                  }
-
-                  return 0;
-              }) 
+    const sorting = (todos, selectedSortingItem) => {
+        {console.log(Object.values(todos).sort((a, b) => a.title > b.title ? 1 : -1), "todos");}
+        switch (selectedSortingItem) {
+            case "az":
+                store.todos = Object.values(todos).sort((a, b) => a.title > b.title ? 1 : -1);
+                break;
+            case "za":
+                store.todos = Object.values(todos).sort((a, b) => a.title > b.title ? -1 : 1);
+                break;
+        }
     };
 
     return (
         <div>
             <select id="selectHTML" defaultValue={"no"}>
-                <option value="no">
-                    Select
-                </option>
+                <option value="no">Select</option>
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
-                <option value="19">1-9</option>
-                <option value="91">9-1</option>
             </select>
-            <button onClick={() => (sorting(todos, select.value), saveTodo())}>
+            <button onClick={() => sorting(todos, select.value)}>
                 Sorting
             </button>
         </div>
     );
 };
-
-export default SortingTodo;

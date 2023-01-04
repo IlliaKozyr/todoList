@@ -1,17 +1,14 @@
 import React from "react";
-import todoListState from "../../store";
 
-const InputSearch = (props) => {
+export const InputSearch = (props) => {
 
     return (
         <div className="dflex">
             <input
-                onChange={({ target: { value } }) => props.search(value)}
+                onChange={({ target: { value } }) => props.todosFilterForSearch(value)}
                 type="text"
                 placeholder="Search here..."
             ></input>
         </div>
     );
 };
-
-export default InputSearch;

@@ -1,36 +1,38 @@
 import React from "react";
+import { store } from "./store";
 import { Inputs } from "./components/inputs";
 import { ColumnNames } from "./components/columnNames";
 import { observer } from "mobx-react-lite";
 import { TodoList } from "./components/todoList";
 import { ModalWindow } from "./components/modalWindow";
-import {store} from "./store";
+import { SortingTodo } from "./components/sorting";
+import { InputSearch } from "./components/search";
 
 export const TodoListApp = observer(() => {
 
-    const { activeTodo , todos } = store;
-
-    const [filtered, setFiltered] = React.useState([]);
+    const { activeTodo, todos } = store;
+    const [filteredTodos, setFilteredTodos] = React.useState([]);
 
     React.useEffect(() => {
-        setFiltered(todos);
-    }, [todos]);
- 
-    const search = (val) => {
-        let currentTodos = [],
-            newList = [];
-        if (val !== "") {
-            currentTodos = todos
-            newList = currentTodos.filter((todo) => {
-                const lc = todo.title.toLowerCase();
-                const filter = val.toLowerCase();
-                return lc.includes(filter);
+        setFilteredTodos(todos);
+    }, [todos, Object.keys(todos).length]);
+
+    const todosFilterForSearch = (inputSearchValue) => {
+        let newTodos = {};
+        if (inputSearchValue !== "") {
+            newTodos = Object.values(todos).filter((todo) => {
+            let lowerCase = todo.title.toLowerCase();
+            let filter = inputSearchValue.toLowerCase();
+            return lowerCase.includes(filter);
+                
             });
         } else {
-            newList = todos;
+            newTodos = todos;
         }
-        setFiltered(newList);
+        setFilteredTodos(newTodos);
     };
+
+    
 
     return (
         <div className="container">
@@ -38,18 +40,16 @@ export const TodoListApp = observer(() => {
                 <Inputs />
                 <div className="sortSearchBlock">
                     <div className="df">
-                        {/* <InputSearch {...{ search }}/> */}
-                        {/* <SortingTodo /> */}
+                        <InputSearch {...{ todosFilterForSearch }} />
+                        <SortingTodo newTodos={filteredTodos}/>
                     </div>
                     <ColumnNames />
                 </div>
-                <TodoList array={store.todos}/>
-                {/* todos={filtered} */}
+                <TodoList newTodos={filteredTodos} />
             </div>
             <div className="fullDescriptionBlock">
-                {activeTodo && <ModalWindow activeTodo={activeTodo} />}
+                {activeTodo && <ModalWindow activeTodo={activeTodo} newTodos={filteredTodos}/>}
             </div>
         </div>
     );
 });
-
