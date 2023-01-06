@@ -13,7 +13,7 @@ export const TodoList = observer((newTodos) => {
                     key={uuid()}
                     onClick={() => store.setActiveTodo(todo.id)}
                 >
-                    <p className="id">#{todo.id.slice(0, 1)}</p>
+                    <p className="id">#{todo.id}</p>
                     <p className="title">
                         {todo?.title?.length >= 7
                             ? todo.title.slice(0, 7) + "..."
