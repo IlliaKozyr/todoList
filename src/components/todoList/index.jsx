@@ -5,17 +5,15 @@ import { store } from "../../store";
 import uuid from "react-uuid";
 
 export const TodoList = observer((newTodos) => {
-
     return (
         <ul className="todoListBlock">
-            {Object.values(newTodos.newTodos).map((todo, index) => (
+            {Object.values(newTodos.newTodos).map((todo) => (
                 <li
                     className="todo"
                     key={uuid()}
                     onClick={() => store.setActiveTodo(todo.id)}
                 >
-                    {console.log(newTodos.newTodos)}
-                    <p className="id">#{index + 1}</p>
+                    <p className="id">#{todo.id.slice(0, 1)}</p>
                     <p className="title">
                         {todo?.title?.length >= 7
                             ? todo.title.slice(0, 7) + "..."

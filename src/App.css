@@ -31,5 +31,10 @@ body {
   justify-content: space-between;
 }
 
+.paginationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 

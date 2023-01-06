@@ -7,60 +7,27 @@ import { TodoList } from "./components/todoList";
 import { ModalWindow } from "./components/modalWindow";
 import { SortingTodos } from "./components/sorting";
 import { InputSearch } from "./components/search";
+import { PaginationComponent } from "./components/pagination";
+import { NumberOfTodosPerPage } from "./components/numberOfTodosPerPage";
 
 export const TodoListApp = observer(() => {
     const { activeTodo, todos } = store;
-    const [filteredTodos, setFilteredTodos] = React.useState([]);
+    let newTodos = {};
 
+    const [filteredTodos, setFilteredTodos] = React.useState([]);
     const keysTodos = Object.keys(todos).length;
 
-    React.useEffect(() => {
-        setFilteredTodos(todos);
-    }, [todos, keysTodos]);
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [todosPerPage, setTodosPerPage] = React.useState(10);
 
-    let newTodos = {};
-    const todosFilterForSearch = (inputSearchValue) => {
-        if (inputSearchValue !== "") {
-            newTodos = Object.values(todos).filter((todo) => {
-                let lowerCase = todo.title.toLowerCase();
-                let filter = inputSearchValue.toLowerCase();
-                return lowerCase.includes(filter);
-            });
-        } else {
-            newTodos = todos;
-        }
-        setFilteredTodos(newTodos);
-    };
+    const lastTodoIndex = currentPage * todosPerPage;
+    const firstTodoIndex = lastTodoIndex - todosPerPage;
+    const currentTodos = Object.values(filteredTodos).slice(
+        firstTodoIndex,
+        lastTodoIndex
+    );
 
-    const sorting = (todos, selectedSortingItem) => {
-        switch (selectedSortingItem) {
-            case "az":
-                newTodos = Object.values(todos).sort((a, b) =>
-                    a.title > b.title ? 1 : -1
-                );
-                setFilteredTodos(newTodos);
-                break;
-            case "za":
-                newTodos = Object.values(todos).sort((a, b) =>
-                    a.title > b.title ? -1 : 1
-                );
-                setFilteredTodos(newTodos);
-                break;
-            case "firstOld":
-                newTodos = Object.values(todos).sort((a, b) =>
-                    a.date > b.date ? -1 : 1
-                );
-                setFilteredTodos(newTodos);
-                break;
-            default:
-                case "firstNew":
-                    newTodos = Object.values(todos).sort((a, b) =>
-                        a.date > b.date ? 1 : -1
-                    );
-                    setFilteredTodos(newTodos);
-                    break;
-        }
-    };
+    console.log(currentTodos)
 
     return (
         <div className="container">
@@ -68,12 +35,28 @@ export const TodoListApp = observer(() => {
                 <Inputs />
                 <div className="sortSearchBlock">
                     <div className="df">
-                        <InputSearch {...{ todosFilterForSearch }} />
-                        <SortingTodos {...{ sorting }} />
+                        <InputSearch
+                            newTodos={newTodos}
+                            setFilteredTodos={setFilteredTodos}
+                            keysTodos={keysTodos}
+                        />
+                        <SortingTodos
+                            newTodos={currentTodos}
+                            setFilteredTodos={setFilteredTodos}
+                        />
                     </div>
                     <ColumnNames />
                 </div>
-                <TodoList newTodos={filteredTodos} />
+                <TodoList newTodos={currentTodos} />
+                <div className="paginationContainer">
+                    <PaginationComponent
+                        todosPerPage={todosPerPage}
+                        totalTodos={keysTodos}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                    />
+                    <NumberOfTodosPerPage setTodosPerPage={setTodosPerPage} />
+                </div>
             </div>
             <div className="fullDescriptionBlock">
                 {activeTodo && (
