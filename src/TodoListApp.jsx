@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { store } from "./store";
 import { Inputs } from "./components/inputs";
 import { ColumnNames } from "./components/columnNames";
@@ -9,6 +9,7 @@ import { SortingTodos } from "./components/sorting";
 import { InputSearch } from "./components/search";
 import { PaginationComponent } from "./components/pagination";
 import { NumberOfTodosPerPage } from "./components/numberOfTodosPerPage";
+import { Popup } from "./components/popup";
 
 export const TodoListApp = observer(() => {
     const { activeTodo, todos } = store;
@@ -27,16 +28,15 @@ export const TodoListApp = observer(() => {
         lastTodoIndex
     );
 
-    console.log(currentTodos)
+    const [popupActive, setPopupActive] = useState(false)
 
     return (
         <div className="container">
             <div className="listBlock">
-                <Inputs />
+                <Inputs newTodos={newTodos}/>
                 <div className="sortSearchBlock">
                     <div className="df">
                         <InputSearch
-                            newTodos={newTodos}
                             setFilteredTodos={setFilteredTodos}
                             keysTodos={keysTodos}
                         />
@@ -61,10 +61,13 @@ export const TodoListApp = observer(() => {
             <div className="fullDescriptionBlock">
                 {activeTodo && (
                     <ModalWindow
-                        activeTodo={activeTodo}
-                        newTodos={filteredTodos}
+                        setPopupActive={setPopupActive}
                     />
                 )}
+                <Popup 
+                    active={popupActive}
+                    setActive={setPopupActive}
+                />
             </div>
         </div>
     );

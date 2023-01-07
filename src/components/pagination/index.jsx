@@ -9,8 +9,6 @@ export const PaginationComponent = ({ todosPerPage, totalTodos, currentPage, set
         pageNumber.push(i)
     }
 
-    console.log(pageNumber)
-
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const nextPage = () => setCurrentPage((prev) => prev + 1);
     const prevPage = () => setCurrentPage((prev) => prev - 1);

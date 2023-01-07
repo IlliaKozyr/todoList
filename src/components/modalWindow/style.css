@@ -36,3 +36,20 @@
 .setting {
     margin: 5px 0;
 }
+
+.editTodoPencil {
+    width: 25px;
+}
+
+.editTodoButton {
+    padding: 0;
+    border-radius: 10px;
+    width: 30px;
+    border: none;
+    background-color: #d9d9d9;
+}
+
+.editTodoButton:hover {
+   background-color: #a1a1a1;
+   border-radius: 10px;
+}

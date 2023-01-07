@@ -1,14 +1,23 @@
+import React from "react";
 import "./style.css";
 import { store } from "../../store";
-import React from "react";
 import { observer } from "mobx-react-lite";
-import uuid from "react-uuid";
 
 export const Inputs = observer(() => {
+
+    const { todos } = store
+    const todosLength = Object.keys(todos).length
+
     const [valueTitle, setValueTitle] = React.useState("");
     const [valueDescription, setValueDescription] = React.useState("");
-    const [id, setId] = React.useState(1)
+    const [id, setId] = React.useState(1);
     // + uuid()
+
+    React.useEffect(() => {
+        if(todosLength === 0) {
+            setId(1)
+        }
+      }, [todosLength]);
 
     return (
         <>
