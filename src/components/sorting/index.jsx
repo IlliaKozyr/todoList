@@ -39,9 +39,9 @@ export const SortingTodos = ({newTodos, setFilteredTodos}) => {
 
     return (
         <div>
-            <select id="selectHTML" defaultValue={"firstNew"}>
-            <option value="firstNew">First New</option>
-            <option value="firstOld">First Old</option>
+            <select id="selectHTML" defaultValue={"firstOld"}>
+                <option value="firstOld">First Old</option>
+                <option value="firstNew">First New</option>
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
             </select>
