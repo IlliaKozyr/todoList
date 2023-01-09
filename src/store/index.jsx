@@ -25,6 +25,10 @@ class TodoStore {
         this.todos[index].completed = value;
     }
 
+    editTodo(titleValue, descriptionValue, id) {
+        this.todos[id].title = titleValue;
+        this.todos[id].description = descriptionValue;
+    }
 }
 
 export const store = new TodoStore();

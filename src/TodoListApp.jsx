@@ -12,7 +12,9 @@ import { NumberOfTodosPerPage } from "./components/numberOfTodosPerPage";
 import { Popup } from "./components/popup";
 
 export const TodoListApp = observer(() => {
+    
     const { activeTodo, todos } = store;
+
     let newTodos = {};
 
     const [filteredTodos, setFilteredTodos] = React.useState([]);

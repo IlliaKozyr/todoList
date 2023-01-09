@@ -6,8 +6,13 @@ export const Popup = ({ active, setActive }) => {
 
     const { todos, activeTodo } = store;
 
-    const [editTodoTitle, setEditTodoTitle] = React.useState(todos[activeTodo?.id]?.title);
-    const [editTodoDescription, setEditTodoDescription] = React.useState(todos[activeTodo?.id]?.description);
+    const [valueTodoTitle, setValueTodoTitle] = React.useState();
+    const [valueTodoDescription, setValueEditTodoDescription] = React.useState();
+
+    React.useEffect(() => {
+        setValueTodoTitle(todos[activeTodo?.id]?.title)
+        setValueEditTodoDescription(todos[activeTodo?.id]?.description)
+      }, [activeTodo, todos]);
 
     return (
         <div
@@ -22,27 +27,25 @@ export const Popup = ({ active, setActive }) => {
                     <label>Edit Title:</label>
                     <input
                         type="text"
-                        value={editTodoTitle || ""}
+                        value={valueTodoTitle || ""}
                         className="inputForEditTodo"
                         onChange={(event) =>
-                            setEditTodoTitle(event.target.value)
+                            setValueTodoTitle(event.target.value)
                         }
                     />
                     <label>Edit Description:</label>
                     <input
                         type="text"
-                        value={editTodoDescription || ""}
+                        value={valueTodoDescription || ""}
                         className="inputForEditTodo"
                         onChange={(event) =>
-                            setEditTodoDescription(event.target.value)
+                            setValueEditTodoDescription(event.target.value)
                         }
                     />
                     <button
                         className="btnForEditTodo btnClose"
                         onClick={() => {
-                            todos[activeTodo?.id].title = editTodoTitle;
-                            todos[activeTodo?.id].description =
-                                editTodoDescription;
+                            store.editTodo(valueTodoTitle, valueTodoDescription, activeTodo.id)
                         }}
                     >
                         Save
