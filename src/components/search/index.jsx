@@ -20,7 +20,7 @@ export const InputSearch = ({newTodos, setFilteredTodos, keysTodos}) => {
 
     React.useEffect(() => {
         setFilteredTodos(todos);
-    }, [todos, keysTodos]);
+    }, [todos, keysTodos, setFilteredTodos]);
 
     return (
         <div className="dflex">

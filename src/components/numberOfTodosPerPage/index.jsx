@@ -5,7 +5,7 @@ export const NumberOfTodosPerPage = ({setTodosPerPage}) => {
     const select = document.getElementById("selectNumberOfTodosPerPage");
 
     return(
-        <select id="selectNumberOfTodosPerPage" onChange={({ target: {} }) => setTodosPerPage(select.value)} defaultValue={"10"}>
+        <select id="selectNumberOfTodosPerPage" onChange={() => setTodosPerPage(select.value)} defaultValue={"10"}>
             <option value="10">10 / page</option>
             <option value="25">25 / page</option>
             <option value="50">50 / page</option>
