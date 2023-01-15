@@ -21,7 +21,8 @@ export const TodoListApp = observer(() => {
     const keysTodos = Object.keys(todos).length;
 
     const [currentPage, setCurrentPage] = React.useState(1);
-    const [todosPerPage, setTodosPerPage] = React.useState(10);
+    const [todosPerPage, setTodosPerPage] = React.useState(1); 
+    // default 10
 
     const lastTodoIndex = currentPage * todosPerPage;
     const firstTodoIndex = lastTodoIndex - todosPerPage;

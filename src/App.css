@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
@@ -17,12 +17,12 @@ body {
 
 .listBlock {
   padding: 20px;
-  min-width: 500px;
+  min-width: 593.281px;
 }
 
 .sortSearchBlock{
   display: flex;
-  margin-top: 100px;
+  margin-top: 40px;
   flex-direction: column;
 }
 
@@ -30,6 +30,8 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+
 
 .paginationContainer {
   display: flex;
