@@ -9,6 +9,8 @@ export const PaginationComponent = ({
 }) => {
     const pagesNumber = [];
 
+    console.log(totalTodos)
+
     for (let i = 1; i <= Math.ceil(totalTodos / todosPerPage); i++) {
         pagesNumber.push(i);
     }
@@ -16,6 +18,8 @@ export const PaginationComponent = ({
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const nextPage = () => setCurrentPage((prev) => prev + 1);
     const prevPage = () => setCurrentPage((prev) => prev - 1);
+    const nextPagePlusTen = () => setCurrentPage((prev) => prev + 10);
+    const nextPageMinusTen = () => setCurrentPage((prev) => prev + 10);
 
     const drawingLi = (numberPage) => {
         return(
@@ -37,35 +41,48 @@ export const PaginationComponent = ({
     const paginationMoreThan5Pages = () => {
         return (
             <div className="df">
+                {drawingLi(pagesNumber[0])}
+                {currentPage >= 5 ? <li className="threeDots" onClick={nextPageMinusTen}>...</li> : null}
+                {currentPage >= 5 ? null : drawingLi(pagesNumber[1])}
+                {currentPage >= 6 ? null : drawingLi(pagesNumber[2])}
+                {currentPage >= 7 ? null : drawingLi(pagesNumber[3])}
+
+                
+
+
                 {pagesNumber.map((number) =>
-                    number < 6 ?
+                    (number < 6 && number > 4) && currentPage < 8 ?
                     drawingLi(number) : null
                 )}
 
-                {currentPage > 7 ? <li className="threeDots">...</li> : null}
+                {console.log(currentPage)}
+                    
+                
 
                 {pagesNumber.map((number) =>
                     number < 6 ||
-                    number === totalTodos ||
+                    number === Math.ceil(totalTodos / 10) ||
                     (currentPage !== number &&
-                        currentPage + 1 !== number &&
-                        currentPage - 1 !== number) ? null : (
+                        currentPage + 1 !== number && currentPage + 2 !== number &&
+                        currentPage - 1 !== number &&
+                        currentPage - 2 !== number) ? null : (
                             drawingLi(number)
                     )
                 )}
 
-                {currentPage < totalTodos - 2 ? (
-                    <li className="threeDots">...</li>
+                {currentPage < Math.ceil(totalTodos / 10) - 3 ? (
+                    <li className="threeDots" onClick={nextPagePlusTen}>...</li>
                 ) : null}
+
                 <li className="pageItem" key={totalTodos}>
                     <button
                         // href="#"
                         className={
-                            currentPage === totalTodos ? "active buttonInLi" : "page-link buttonInLi"
+                            currentPage === Math.ceil(totalTodos / 10) ? "active buttonInLi" : "page-link buttonInLi"
                         }
-                        onClick={() => paginate(totalTodos)}
+                        onClick={() => paginate(Math.ceil(totalTodos / 10))}
                     >
-                        {totalTodos}
+                        {Math.ceil(totalTodos / 10)}
                     </button>
                 </li>
             </div>
@@ -83,7 +100,6 @@ export const PaginationComponent = ({
             <ul className="pagination">
                 <li>
                     <button
-                        // href="#"
                         className={
                             pagesNumber.length <= 1
                                 ? "displayNone"

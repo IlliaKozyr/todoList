@@ -11,13 +11,12 @@ export const Inputs = observer(() => {
     const [valueTitle, setValueTitle] = React.useState("");
     const [valueDescription, setValueDescription] = React.useState("");
     const [id, setId] = React.useState(1);
-    // + uuid()
 
     React.useEffect(() => {
         if(todosLength === 0) {
             setId(1)
         }
-      }, [todosLength]);
+      }, [todosLength]); 
 
     return (
         <>
@@ -57,7 +56,6 @@ export const Inputs = observer(() => {
                     setValueTitle("");
                     setValueDescription("");
                     setId(id + 1);
-                    // String(Number(id[0]) + 1) + String(uuid())
                 }}
                 disabled={
                     valueTitle.length === 0 || valueDescription.length === 0

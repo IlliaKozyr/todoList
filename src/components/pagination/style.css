@@ -24,6 +24,7 @@
 .pagination button.active {
     border: 1px solid #3388ff;
     border-radius: 10px;
+    width: 58px;
     color: #3388ff;
 }
 
@@ -56,5 +57,5 @@ a.disabled {
 
 .threeDots {
     text-align: start;
-    padding-top: 8px;
+    padding-top: 3px;
 }
