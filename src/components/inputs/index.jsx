@@ -3,20 +3,17 @@ import "./style.css";
 import { store } from "../../store";
 import { observer } from "mobx-react-lite";
 
-export const Inputs = observer(() => {
-
-    const { todos } = store
-    const todosLength = Object.keys(todos).length
+export const Inputs = observer(({keysTodos, currentPage}) => {
 
     const [valueTitle, setValueTitle] = React.useState("");
     const [valueDescription, setValueDescription] = React.useState("");
     const [id, setId] = React.useState(1);
 
     React.useEffect(() => {
-        if(todosLength === 0) {
+        if(keysTodos === 0) {
             setId(1)
         }
-      }, [todosLength]); 
+      }, [keysTodos]); 
 
     return (
         <>
@@ -63,6 +60,7 @@ export const Inputs = observer(() => {
             >
                 Create
             </button>
+            {console.log(currentPage)}
         </>
     );
 });

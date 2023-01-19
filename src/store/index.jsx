@@ -10,7 +10,17 @@ class TodoStore {
     }
 
     addTodo(todo) {
-        this.todos[todo.id] = todo;
+        this.todos[todo.id] = todo; 
+        // for(let i = 0; i < 1000; i++) {
+        //     const task = {
+        //         completed: false,
+        //         date: 7853456458 + i,
+        //         description: "qwerty", 
+        //         id: i,
+        //         title: "asdfgh"
+        //     }
+        //     this.todos[task.id] = task;
+        // }
     }
 
     setActiveTodo(id) {

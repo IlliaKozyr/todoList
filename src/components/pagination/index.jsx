@@ -6,12 +6,11 @@ export const PaginationComponent = ({
     totalTodos,
     currentPage,
     setCurrentPage,
+    numberOfPages,
 }) => {
     const pagesNumber = [];
 
-    console.log(totalTodos)
-
-    for (let i = 1; i <= Math.ceil(totalTodos / todosPerPage); i++) {
+    for (let i = 1; i <= numberOfPages; i++) {
         pagesNumber.push(i);
     }
 
@@ -22,67 +21,72 @@ export const PaginationComponent = ({
     const nextPageMinusTen = () => setCurrentPage((prev) => prev + 10);
 
     const drawingLi = (numberPage) => {
-        return(
+        return (
             <li className="pageItem" key={numberPage}>
-                    <button
-                        className={
-                            currentPage === numberPage
-                                ? "active buttonInLi"
-                                : "page-link buttonInLi"
-                        }
-                        onClick={() => paginate(numberPage)}
-                    >
-                        {numberPage}
-                    </button>
-                </li>
-        )
-    }
+                <button
+                    className={
+                        currentPage === numberPage
+                            ? "active buttonInLi"
+                            : "page-link buttonInLi"
+                    }
+                    onClick={() => paginate(numberPage)}
+                >
+                    {numberPage}
+                </button>
+            </li>
+        );
+    };
 
     const paginationMoreThan5Pages = () => {
         return (
             <div className="df">
                 {drawingLi(pagesNumber[0])}
-                {currentPage >= 5 ? <li className="threeDots" onClick={nextPageMinusTen}>...</li> : null}
+                {currentPage >= 5 ? (
+                    <li className="threeDots" onClick={nextPageMinusTen}>
+                        ...
+                    </li>
+                ) : null}
                 {currentPage >= 5 ? null : drawingLi(pagesNumber[1])}
                 {currentPage >= 6 ? null : drawingLi(pagesNumber[2])}
                 {currentPage >= 7 ? null : drawingLi(pagesNumber[3])}
 
-                
-
-
                 {pagesNumber.map((number) =>
-                    (number < 6 && number > 4) && currentPage < 8 ?
-                    drawingLi(number) : null
+                    number < 6 && number > 4 && currentPage < 8
+                        ? drawingLi(number)
+                        : null
                 )}
 
                 {console.log(currentPage)}
-                    
-                
 
                 {pagesNumber.map((number) =>
                     number < 6 ||
-                    number === Math.ceil(totalTodos / 10) ||
+                    number === numberOfPages ||
                     (currentPage !== number &&
-                        currentPage + 1 !== number && currentPage + 2 !== number &&
+                        currentPage + 1 !== number &&
+                        currentPage + 2 !== number &&
                         currentPage - 1 !== number &&
-                        currentPage - 2 !== number) ? null : (
-                            drawingLi(number)
-                    )
+                        currentPage - 2 !== number)
+                        ? null
+                        : drawingLi(number)
                 )}
 
-                {currentPage < Math.ceil(totalTodos / 10) - 3 ? (
-                    <li className="threeDots" onClick={nextPagePlusTen}>...</li>
+                {currentPage < numberOfPages - 3 ? (
+                    <li className="threeDots" onClick={nextPagePlusTen}>
+                        ...
+                    </li>
                 ) : null}
 
                 <li className="pageItem" key={totalTodos}>
                     <button
                         // href="#"
                         className={
-                            currentPage === Math.ceil(totalTodos / 10) ? "active buttonInLi" : "page-link buttonInLi"
+                            currentPage === numberOfPages
+                                ? "active buttonInLi"
+                                : "page-link buttonInLi"
                         }
-                        onClick={() => paginate(Math.ceil(totalTodos / 10))}
+                        onClick={() => paginate(numberOfPages)}
                     >
-                        {Math.ceil(totalTodos / 10)}
+                        {numberOfPages}
                     </button>
                 </li>
             </div>
@@ -90,9 +94,7 @@ export const PaginationComponent = ({
     };
 
     const paginationLessThan5Pages = () => {
-        return pagesNumber.map((number) => (
-            drawingLi(number)
-        ));
+        return pagesNumber.map((number) => drawingLi(number));
     };
 
     return (
