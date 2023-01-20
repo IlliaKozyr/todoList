@@ -15,15 +15,13 @@ export const TodoListApp = observer(() => {
     
     const { activeTodo, todos } = store;
 
-    let newTodos = {};
-
     const [filteredTodos, setFilteredTodos] = React.useState([]);
     const keysTodos = Object.keys(todos).length;
 
     const [currentPage, setCurrentPage] = React.useState(1);
-    const [todosPerPage, setTodosPerPage] = React.useState(1); 
-    // default 10
+    const [todosPerPage, setTodosPerPage] = React.useState(10);  
 
+    const numberOfPages = Math.ceil(keysTodos / todosPerPage);
     const lastTodoIndex = currentPage * todosPerPage;
     const firstTodoIndex = lastTodoIndex - todosPerPage;
     const currentTodos = Object.values(filteredTodos).slice(
@@ -36,7 +34,7 @@ export const TodoListApp = observer(() => {
     return (
         <div className="container">
             <div className="listBlock">
-                <Inputs newTodos={newTodos}/>
+                <Inputs keysTodos={keysTodos} setCurrentPage={setCurrentPage} numberOfPages={numberOfPages} currentPage={currentPage}/>
                 <div className="sortSearchBlock">
                     <div className="df">
                         <InputSearch
@@ -57,8 +55,9 @@ export const TodoListApp = observer(() => {
                         totalTodos={keysTodos}
                         currentPage={currentPage}
                         setCurrentPage={setCurrentPage}
+                        numberOfPages={numberOfPages}
                     />
-                    <NumberOfTodosPerPage setTodosPerPage={setTodosPerPage} />
+                    <NumberOfTodosPerPage setTodosPerPage={setTodosPerPage} setCurrentPage={setCurrentPage}/>
                 </div>
             </div>
             <div className="fullDescriptionBlock">
