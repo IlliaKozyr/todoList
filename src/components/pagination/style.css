@@ -3,6 +3,11 @@
     min-width: 400px;
 }
 
+.dflex{
+    display: flex;
+    align-items: center;
+}
+
 .buttonInLi {
     background-color: #d9d9d9;
     border: none;
@@ -35,6 +40,7 @@
 
 li {
     list-style-type: none;
+    cursor: pointer;
 }
 
 button.disabled {
@@ -55,7 +61,16 @@ a.disabled {
     pointer-events: none;
   }
 
-.threeDots {
-    text-align: start;
-    padding-top: 3px;
+.threeDotsMinus5::before,
+.threeDotsPlus5::before {
+    content: attr(defaultText);
+    padding: 0 10px;
+}
+.threeDotsMinus5:hover::before,
+.threeDotsPlus5:hover::before {
+    content: attr(hoverText);
+    background-color: #a1a1a1;
+    border-radius: 10px;
+    padding: 0 10px;
+
 }

@@ -2,7 +2,6 @@ import "./style.css";
 import React from "react";
 
 export const PaginationComponent = ({
-    todosPerPage,
     totalTodos,
     currentPage,
     setCurrentPage,
@@ -17,8 +16,8 @@ export const PaginationComponent = ({
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const nextPage = () => setCurrentPage((prev) => prev + 1);
     const prevPage = () => setCurrentPage((prev) => prev - 1);
-    const nextPagePlusTen = () => setCurrentPage((prev) => prev + 10);
-    const nextPageMinusTen = () => setCurrentPage((prev) => prev + 10);
+    const nextPagePlusTen = () => setCurrentPage((prev) => numberOfPages - prev >= 5 ? prev + 5 : prev + (numberOfPages - prev));
+    const nextPageMinusTen = () => setCurrentPage((prev) => prev - 5 <= 0 ? prev - 4 : prev - 5);
 
     const drawingLi = (numberPage) => {
         return (
@@ -39,11 +38,10 @@ export const PaginationComponent = ({
 
     const paginationMoreThan5Pages = () => {
         return (
-            <div className="df">
+            <div className="dflex">
                 {drawingLi(pagesNumber[0])}
                 {currentPage >= 5 ? (
-                    <li className="threeDots" onClick={nextPageMinusTen}>
-                        ...
+                    <li className="threeDotsMinus5" onClick={nextPageMinusTen} defaultText="..." hoverText=" « ">
                     </li>
                 ) : null}
                 {currentPage >= 5 ? null : drawingLi(pagesNumber[1])}
@@ -55,8 +53,6 @@ export const PaginationComponent = ({
                         ? drawingLi(number)
                         : null
                 )}
-
-                {console.log(currentPage)}
 
                 {pagesNumber.map((number) =>
                     number < 6 ||
@@ -71,14 +67,12 @@ export const PaginationComponent = ({
                 )}
 
                 {currentPage < numberOfPages - 3 ? (
-                    <li className="threeDots" onClick={nextPagePlusTen}>
-                        ...
+                    <li className="threeDotsPlus5" onClick={nextPagePlusTen} defaultText="..." hoverText=" » ">
                     </li>
                 ) : null}
 
                 <li className="pageItem" key={totalTodos}>
                     <button
-                        // href="#"
                         className={
                             currentPage === numberOfPages
                                 ? "active buttonInLi"
@@ -121,7 +115,6 @@ export const PaginationComponent = ({
 
                 <li>
                     <button
-                        // href="#"
                         className={
                             pagesNumber.length <= 1
                                 ? "displayNone"
