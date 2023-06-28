@@ -2,15 +2,15 @@
     background-color: #161a2b;
     border: 2px solid #5d0cff;
     border-radius: 10px;
-    padding: 8px 10px;
+    padding: 10px 10px;
     color: #e2e2e2;
-    appearance: none; /* Hide default arrow icon */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
   }
   
   .select:focus {
-    outline: none; /* Remove focus outline */
+    outline: none;
   }
   
   .select option {
