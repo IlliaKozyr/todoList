@@ -77,21 +77,13 @@
         padding: 0;
         min-height: 100vh;
         height: 100%;
+        padding-top: 70px;
+        justify-content: start;
         
     }
 
     .modalWindowsBlock {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background: none;
-        border: 2px solid #5d0cff;
-        border-radius: 10px;
         max-width: 250px;
         max-height: 500px;
-        height: 100%;
-        width: 100%;
-        margin: 10vh auto;
-        padding: 20px;
     }
 }

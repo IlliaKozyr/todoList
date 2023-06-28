@@ -93,8 +93,7 @@
     }
 
     .closeButton {
-        top: 3px;
-        right: 3px;
-        
+        top: 0px;
+        right: 0px;
     }
 }
