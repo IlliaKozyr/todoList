@@ -49,8 +49,7 @@
 .inputForEditTodo {
     height: 35px;
     margin-bottom: 20px;
-    max-width: 500px;
-    width: 100%;
+    width: calc(100% - 20px);
     border-radius: 12px;
     padding: 0 10px;
     background-color: #161a2b;
@@ -59,7 +58,6 @@
 
 .btnForEditTodo {
     height: 35px;
-    max-width: 525px;
     width: 100%;
     border-radius: 12px;
     border: none;
@@ -88,5 +86,9 @@
 @media (max-width: 992px) {
     .popupContent {
         width: 60%;
+    }
+
+    .btnForEditTodo {
+        padding: 0px 10px;
     }
 }
