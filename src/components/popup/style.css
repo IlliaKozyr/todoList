@@ -91,4 +91,10 @@
     .btnForEditTodo {
         padding: 0px 10px;
     }
+
+    .closeButton {
+        top: 3px;
+        right: 3px;
+        
+    }
 }
