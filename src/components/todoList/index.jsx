@@ -11,7 +11,7 @@ export const TodoList = observer((newTodos) => {
             ".fullDescriptionBlock"
         );
         descriptionBlock.classList.add("fullDescriptionBlockActive");
-        const listBlock = document.querySelector (".listBlock");
+        const listBlock = document.querySelector(".listBlock");
         listBlock.classList.add("listBlockNone");
     };
 
@@ -19,7 +19,7 @@ export const TodoList = observer((newTodos) => {
         <ul className="todoListBlock">
             {Object.values(newTodos.newTodos).map((todo) => (
                 <li
-                    className="todo"
+                    className={`todo ${todo.completed ? "completed" : ""}`}
                     key={uuid()}
                     onClick={() => {
                         store.setActiveTodo(todo.id);
@@ -39,14 +39,18 @@ export const TodoList = observer((newTodos) => {
                             className="checkbox"
                         />
                     </div>
-
-                    {/* <p className="id">#{todo.id}</p> */}
-                    <p className="title">
+                    <p
+                        className={`title ${
+                            todo.completed ? "completed-text" : ""
+                        }`}
+                    >
                         {todo?.title?.length >= 10
                             ? todo.title.slice(0, 10) + "..."
                             : todo.title}
                     </p>
-                    <p className="description">
+                    <p  className={`desctiption ${
+                            todo.completed ? "completed-text" : ""
+                        }`}>
                         {todo.description?.length >= 10
                             ? todo.description.slice(0, 10) + "..."
                             : todo.description}
@@ -54,6 +58,7 @@ export const TodoList = observer((newTodos) => {
                     <div
                         className="inputBtnBlock"
                         onClick={(event) => event.stopPropagation()}
+                        
                     >
                         <button
                             className="btn-close"

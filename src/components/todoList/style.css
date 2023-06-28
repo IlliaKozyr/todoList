@@ -61,6 +61,12 @@
     border-color: #f6f6f8;
 }
 
+.completed-text {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px; 
+    
+  }
+
 .btnRemove {
     height: 20px;
     margin-top: 15px;
