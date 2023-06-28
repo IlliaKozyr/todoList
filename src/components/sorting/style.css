@@ -4,4 +4,16 @@
     border-radius: 10px;
     padding: 8px 10px;
     color: #e2e2e2;
-}
+    appearance: none; /* Hide default arrow icon */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  .select:focus {
+    outline: none; /* Remove focus outline */
+  }
+  
+  .select option {
+    background-color: #161a2b;
+    color: #e2e2e2;
+  }

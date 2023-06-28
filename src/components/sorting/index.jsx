@@ -1,5 +1,6 @@
-import "./style.css";
+import React from "react";
 import { store } from "../../store";
+import "./style.css";
 
 export const SortingTodos = ({ newTodos, setFilteredTodos }) => {
     const { todos } = store;
@@ -46,9 +47,8 @@ export const SortingTodos = ({ newTodos, setFilteredTodos }) => {
                 defaultValue={"default"}
                 className="select"
                 onChange={handleSelectChange}
-                p
             >
-                <option value="default" disabled selected>
+                <option value="default" disabled>
                     Filter
                 </option>
                 <option value="firstOld">First Old</option>
