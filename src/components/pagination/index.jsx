@@ -98,10 +98,10 @@ export const PaginationComponent = ({
                     <button
                         className={
                             pagesNumber.length <= 1
-                                ? "displayNone"
-                                : "displayBlock buttonInLi" && currentPage === 1
-                                ? "disabled buttonInLi"
-                                : "buttonInLi"
+                                ? "displayNone arrow"
+                                : "displayBlock buttonInLi arrow" && currentPage === 1
+                                ? "disabled buttonInLi arrow"
+                                : "buttonInLi arrow"
                         }
                         onClick={prevPage}
                     >
@@ -117,11 +117,11 @@ export const PaginationComponent = ({
                     <button
                         className={
                             pagesNumber.length <= 1
-                                ? "displayNone"
-                                : "displayBlock buttonInLi" &&
+                                ? "displayNone arrow"
+                                : "displayBlock buttonInLi arrow" &&
                                   pagesNumber.length === currentPage
-                                ? "disabled buttonInLi"
-                                : "buttonInLi"
+                                ? "disabled buttonInLi arrow"
+                                : "buttonInLi arrow"
                         }
                         onClick={nextPage}
                     >

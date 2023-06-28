@@ -3,42 +3,39 @@ import "./style.css";
 import { store } from "../../store";
 import { observer } from "mobx-react-lite";
 
-export const Inputs = observer(({keysTodos, currentPage}) => {
-
+export const Inputs = observer(({ keysTodos }) => {
     const [valueTitle, setValueTitle] = React.useState("");
     const [valueDescription, setValueDescription] = React.useState("");
     const [id, setId] = React.useState(1);
 
     React.useEffect(() => {
-        if(keysTodos === 0) {
-            setId(1)
+        if (keysTodos === 0) {
+            setId(1);
         }
-      }, [keysTodos]); 
+    }, [keysTodos]);
 
     return (
-        <>
-            <div className="inputsBlock">
-                <div className="inputBlock">
-                    <label className="label">title</label>
-                    <input
-                        type="text"
-                        value={valueTitle}
-                        id="title"
-                        onChange={(event) => setValueTitle(event.target.value)}
-                    />
-                </div>
+        <form className="form">
+            <div className="inputBlock">
+                <input
+                    type="text"
+                    value={valueTitle}
+                    id="title"
+                    placeholder="Title"
+                    onChange={(event) => setValueTitle(event.target.value)}
+                />
+            </div>
 
-                <div className="inputBlock">
-                    <label className="label">description</label>
-                    <input
-                        type="text"
-                        value={valueDescription}
-                        id="description"
-                        onChange={(event) =>
-                            setValueDescription(event.target.value)
-                        }
-                    />
-                </div>
+            <div className="inputBlock">
+                <input
+                    type="text"
+                    value={valueDescription}
+                    id="description"
+                    placeholder="Description"
+                    onChange={(event) =>
+                        setValueDescription(event.target.value)
+                    }
+                />
             </div>
             <button
                 className="button"
@@ -58,9 +55,8 @@ export const Inputs = observer(({keysTodos, currentPage}) => {
                     valueTitle.length === 0 || valueDescription.length === 0
                 }
             >
-                Create
+                Add Todo
             </button>
-            {console.log(currentPage)}
-        </>
+        </form>
     );
 });

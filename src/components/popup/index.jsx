@@ -12,7 +12,16 @@ export const Popup = ({ active, setActive }) => {
     React.useEffect(() => {
         setValueTodoTitle(todos[activeTodo?.id]?.title)
         setValueEditTodoDescription(todos[activeTodo?.id]?.description)
-      }, [activeTodo, todos]);
+    }, [activeTodo, todos]);
+
+    const handleSave = () => {
+        store.editTodo(valueTodoTitle, valueTodoDescription, activeTodo.id);
+        setActive(false);
+    };
+
+    const handleClose = () => {
+        setActive(false); 
+    };
 
     return (
         <div
@@ -24,6 +33,12 @@ export const Popup = ({ active, setActive }) => {
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className="editTodoForm">
+                    <button
+                        className="closeButton btn-close"
+                        onClick={handleClose}
+                    >
+                        ×
+                    </button>
                     <label>Edit Title:</label>
                     <input
                         type="text"
@@ -43,10 +58,8 @@ export const Popup = ({ active, setActive }) => {
                         }
                     />
                     <button
-                        className="btnForEditTodo btnClose"
-                        onClick={() => {
-                            store.editTodo(valueTodoTitle, valueTodoDescription, activeTodo.id)
-                        }}
+                        className="btnForEditTodo"
+                        onClick={handleSave}
                     >
                         Save
                     </button>

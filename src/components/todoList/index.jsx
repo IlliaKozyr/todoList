@@ -5,25 +5,27 @@ import { store } from "../../store";
 import uuid from "react-uuid";
 
 export const TodoList = observer((newTodos) => {
+    const handleTodoClick = (id) => {
+        store.setActiveTodo(id);
+        const descriptionBlock = document.querySelector(
+            ".fullDescriptionBlock"
+        );
+        descriptionBlock.classList.add("fullDescriptionBlockActive");
+        const listBlock = document.querySelector (".listBlock");
+        listBlock.classList.add("listBlockNone");
+    };
+
     return (
         <ul className="todoListBlock">
             {Object.values(newTodos.newTodos).map((todo) => (
                 <li
                     className="todo"
                     key={uuid()}
-                    onClick={() => store.setActiveTodo(todo.id)}
+                    onClick={() => {
+                        store.setActiveTodo(todo.id);
+                        handleTodoClick(todo.id);
+                    }}
                 >
-                    <p className="id">#{todo.id}</p>
-                    <p className="title">
-                        {todo?.title?.length >= 7
-                            ? todo.title.slice(0, 7) + "..."
-                            : todo.title}
-                    </p>
-                    <p className="description">
-                        {todo.description?.length >= 7
-                            ? todo.description.slice(0, 7) + "..."
-                            : todo.description}
-                    </p>
                     <div
                         className="inputBtnBlock"
                         onClick={(event) => event.stopPropagation()}
@@ -34,9 +36,33 @@ export const TodoList = observer((newTodos) => {
                             onChange={() => {
                                 store.completeTodo(todo.id, !todo.completed);
                             }}
+                            className="checkbox"
                         />
-                        <button onClick={() => {store.removeTodo(todo.id); store.setActiveTodo(null)}}>
-                            x
+                    </div>
+
+                    {/* <p className="id">#{todo.id}</p> */}
+                    <p className="title">
+                        {todo?.title?.length >= 10
+                            ? todo.title.slice(0, 10) + "..."
+                            : todo.title}
+                    </p>
+                    <p className="description">
+                        {todo.description?.length >= 10
+                            ? todo.description.slice(0, 10) + "..."
+                            : todo.description}
+                    </p>
+                    <div
+                        className="inputBtnBlock"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        <button
+                            className="btn-close"
+                            onClick={() => {
+                                store.removeTodo(todo.id);
+                                store.setActiveTodo(null);
+                            }}
+                        >
+                            ✕
                         </button>
                     </div>
                 </li>

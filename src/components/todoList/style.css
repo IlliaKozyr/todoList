@@ -1,13 +1,64 @@
 .todo {
     display: flex;
-    background-color: #ec8080;
-    margin: 5px 0;
+    background: linear-gradient(
+        90deg,
+        rgb(255, 73, 12, 1) 0%,
+        rgba(205, 50, 10, 1) 100%
+    );
+    margin: 10px 0;
     justify-content: space-between;
     padding-right: 15px;
+    border-radius: 10px;
+    padding: 0px 20px;
+}
+
+.todo:nth-child(4n + 1) {
+    background: linear-gradient(
+        90deg,
+        rgba(93, 12, 255, 1) 0%,
+        rgba(155, 0, 250, 1) 100%
+    );
+}
+
+.todo:nth-child(4n + 2) {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 12, 241, 1) 0%,
+        rgba(250, 0, 135, 1) 100%
+    );
+}
+
+.todo:nth-child(4n + 3) {
+    background: linear-gradient(
+        90deg,
+        rgba(20, 159, 255, 1) 0%,
+        rgba(17, 122, 255, 1) 100%
+    );
+}
+
+.todo > p {
+    color: #f6f6f8;
 }
 
 .todo:hover {
-    background-color: coral;
+    opacity: 0.8;
+}
+
+.checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #f6f6f8;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox:checked {
+    background-color: #f6f6f8;
+    border-color: #f6f6f8;
 }
 
 .btnRemove {
@@ -22,8 +73,18 @@ ul {
 .inputBtnBlock {
     display: flex;
     padding: 14px 0;
+    align-items: center;
 }
 
 .todoListBlock {
     min-height: 545px;
+}
+
+.btn-close {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: #f6f6f8;
+    font-size: 15px;
+    margin-left: 20px;
 }

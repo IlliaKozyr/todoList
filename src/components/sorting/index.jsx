@@ -1,11 +1,8 @@
 import "./style.css";
 import { store } from "../../store";
 
-export const SortingTodos = ({newTodos, setFilteredTodos}) => {
-
+export const SortingTodos = ({ newTodos, setFilteredTodos }) => {
     const { todos } = store;
-
-    const select = document.getElementById("selectHTML");
 
     const sorting = (selectedSortingItem) => {
         switch (selectedSortingItem) {
@@ -37,17 +34,28 @@ export const SortingTodos = ({newTodos, setFilteredTodos}) => {
         }
     };
 
+    const handleSelectChange = (event) => {
+        const selectedValue = event.target.value;
+        sorting(selectedValue);
+    };
+
     return (
         <div>
-            <select id="selectHTML" defaultValue={"firstOld"}>
+            <select
+                id="selectHTML"
+                defaultValue={"default"}
+                className="select"
+                onChange={handleSelectChange}
+                p
+            >
+                <option value="default" disabled selected>
+                    Filter
+                </option>
                 <option value="firstOld">First Old</option>
                 <option value="firstNew">First New</option>
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
             </select>
-            <button onClick={() => sorting(select.value)}>
-                Sorting
-            </button>
         </div>
     );
 };

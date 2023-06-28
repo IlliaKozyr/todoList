@@ -1,0 +1,6 @@
+@media (max-width: 992px) {
+    .customSelect,
+    .customSelect input {
+        max-width: 70%;
+    }
+}

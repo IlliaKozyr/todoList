@@ -1,42 +1,113 @@
 body {
-  background-color: #d9d9d9;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(48, 16, 255, 1) 0%,
+        rgba(100, 115, 255, 1) 100%
+    );
+
+    font-family: "Poppins", sans-serif;
 }
 
 .container {
-  max-width: 1300px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-around;
-}
-
-.fullDescriptionBlock {
-  background-color: #a1a1a1;
-  padding: 80px 40px 80px 40px;
-  min-width: 500px;
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .listBlock {
-  min-width: 593.281px;
+    background-color: #161a2b;
+    min-height: 100vh;
+    max-width: 600px;
+    width: 100%;
+    padding: 0px 20px;
+    
 }
 
-.sortSearchBlock{
-  display: flex;
-  margin-top: 40px;
-  flex-direction: column;
+h1 {
+    margin: 20px 0 10px 0;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
 }
 
-.df {
-  display: flex;
-  justify-content: space-between;
+.fullDescriptionBlock {
+    background-color: #161a2b;
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
 }
+
+.sortSearchBlock {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button {
+    padding: 8px 20px;
+    border-radius: 10px;
+    color: #f6f6f8;
+    font-size: 15px;
+    background: linear-gradient(
+        90deg,
+        rgba(93, 12, 255, 1) 0%,
+        rgba(155, 0, 250, 1) 100%
+    );
+
+    border: none;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
 
 .paginationContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-button:hover {
-  cursor: pointer;
-}
+@media (max-width: 992px) {
+   
+    .container {
+        max-width: 100vw;
+        position: relative;
+    }
 
+    .fullDescriptionBlock {
+        position: absolute;
+    }
+
+    .paginationContainer {
+        flex-direction: column;
+        padding-bottom: 30px;
+    }
+
+    .fullDescriptionBlock{
+        display: none;
+    }
+
+    .fullDescriptionBlockActive {
+        display: block !important;
+        display: flex !important;
+    }
+
+    .listBlock {
+
+        max-width: 992px !important;
+    }
+    .listBlockNone {
+        display: none !important;
+    }
+}

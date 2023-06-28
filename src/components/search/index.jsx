@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 import { store } from "../../store";
 
 export const InputSearch = ({newTodos, setFilteredTodos, keysTodos}) => {
@@ -23,11 +24,12 @@ export const InputSearch = ({newTodos, setFilteredTodos, keysTodos}) => {
     }, [todos, keysTodos, setFilteredTodos]);
 
     return (
-        <div className="dflex">
+        <div className="customSelect">
             <input
                 onChange={({ target: { value } }) => todosFilterForSearch(value)}
                 type="text"
                 placeholder="Search here..."
+                className="select"
             ></input>
         </div>
     );
