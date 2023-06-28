@@ -44,15 +44,15 @@ export const TodoList = observer((newTodos) => {
                             todo.completed ? "completed-text" : ""
                         }`}
                     >
-                        {todo?.title?.length >= 10
-                            ? todo.title.slice(0, 10) + "..."
+                        {todo?.title?.length >= 8
+                            ? todo.title.slice(0, 8) + "..."
                             : todo.title}
                     </p>
-                    <p  className={`desctiption ${
+                    <p  className={`description ${
                             todo.completed ? "completed-text" : ""
                         }`}>
-                        {todo.description?.length >= 10
-                            ? todo.description.slice(0, 10) + "..."
+                        {todo.description?.length >= 8
+                            ? todo.description.slice(0, 8) + "..."
                             : todo.description}
                     </p>
                     <div

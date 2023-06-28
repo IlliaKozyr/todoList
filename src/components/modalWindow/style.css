@@ -86,4 +86,12 @@
         max-width: 250px;
         max-height: 500px;
     }
+
+    .todoTitle {
+        max-width: 200px;
+        overflow-wrap: break-word;
+    }
+    .setting {
+        overflow-wrap: break-word;
+    }
 }
