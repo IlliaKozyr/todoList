@@ -29,7 +29,7 @@ export const InputSearch = ({newTodos, setFilteredTodos, keysTodos}) => {
                 onChange={({ target: { value } }) => todosFilterForSearch(value)}
                 type="text"
                 placeholder="Search here..."
-                className="select"
+                className="select customInput"
             ></input>
         </div>
     );
